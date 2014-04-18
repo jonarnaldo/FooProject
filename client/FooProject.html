@@ -1,0 +1,46 @@
+<head>
+  <title>Grocery List v.0.3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-1 col-md-3 col-lg-2"></div>
+				<div class="col-xs-10 col-md-6 col-lg-8 text-center">
+					<h3 class = "bg-primary">
+						<span class="glyphicon glyphicon-shopping-cart"></span>
+						Grocery List
+					</h3>
+					{{> addGrocery}}
+					<br><br>
+					{{> groceryList}}
+				</div>
+				<div class="col-xs-1 col-md-3 col-lg-2"></div>
+			</div>
+		</div>
+		<div class="update">
+			<div class="text-center">v0.3</div>
+			<div class="text-center"><a href="http://glyphicons.com/"><small>		Glyph provided by Glyphicons</small></a></div>
+		</div>
+</body>
+
+<template name="addGrocery">
+	<input type="text" id="nameInput" placeholder="Bread">
+	<button class="btn btn-success btn-xs submit">Submit</button>
+</template>
+
+<template name="groceryList">
+	<div class="listContainer">		
+		{{#each item}}
+			{{> items}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="items">
+	<div class="listRow {{itemName}}" id="row {{_id}}">
+		{{itemName}}
+		<div class="deleteHide" id="delete {{_id}}"></div>
+	</div>
+</template>

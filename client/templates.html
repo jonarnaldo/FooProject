@@ -1,0 +1,18 @@
+<template name="groceryList">
+	<div class="listContainer">		
+		{{#each item}}
+			{{> items}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="items">
+	<div class="listRow {{itemName}}" id="row {{_id}}">
+		{{itemName}}
+		<div class="deleteHide" id="delete {{_id}}"></div>
+	</div>
+</template>
+
+
+
+
