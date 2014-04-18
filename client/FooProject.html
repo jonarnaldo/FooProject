@@ -1,5 +1,5 @@
 <head>
-  <title>Grocery List v.0.3</title>
+  <title>Grocery List v.0.4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -39,8 +39,8 @@
 </template>
 
 <template name="items">
-	<div class="listRow {{itemName}}" id="row {{_id}}">
+	<div class="listRow text-centered" id="{{_id}}">
 		{{itemName}}
-		<div class="deleteHide" id="delete {{_id}}"></div>
+		<div class="deleteHide" id="delete"></div>
 	</div>
 </template>

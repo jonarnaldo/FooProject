@@ -11,20 +11,22 @@ if (Meteor.isClient) {
     }
   })
 
-  //set 'this' when item is selected
   Template.items.events({
-    'click .listRow': function () {
+  //set 'this' when item is selected
+    'click .listRow': function (e) {
        Session.set("itemSelected", this._id);
        console.log(Session.get("itemSelected"));
-    }
-  })
 
-  Template.items.events({
-    'click #remove': function() {
+       var foo = e.currentTarget;
+       var bar = $(foo).children('#delete').toggleClass("deleteShow", 200);
+    },
+    
+    'click #delete': function() {
       Grocery.remove(Session.get("itemSelected"));
+      console.log(Session.get("itemSelected") + "removed");
     }
-  })
-
+  }) 
+ 
 //populate groceryList with items
   Template.groceryList.item = function () {
     return Grocery.find({}, {sort:{ itemName: 1}});
@@ -36,10 +38,10 @@ if (Meteor.isClient) {
   }
 /*
   $(".listRow").click(function () {
-      var currentId = $(this).find('span').attr('id');
-      $('#' + currentId).toggleClass("deleteShow", 200);
+      var currentId = $(this).find('div').attr('id');
+      console.log(currentId);
+      //$('#' + currentId).toggleClass("deleteShow", 200);
   });
-
 
   $('.deleteHide').click(function () {
       var currentParent = $(this).parent().attr('id');
