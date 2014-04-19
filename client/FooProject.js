@@ -15,15 +15,20 @@ if (Meteor.isClient) {
   //set 'this' when item is selected
     'click .listRow': function (e) {
        Session.set("itemSelected", this._id);
-       console.log(Session.get("itemSelected"));
 
-       var foo = e.currentTarget;
-       var bar = $(foo).children('#delete').toggleClass("deleteShow", 200);
+       var thisRow = e.currentTarget;
+       var thisDelete = $(thisRow).children('div');
+       $(thisDelete).toggleClass("deleteShow", 200);
     },
     
-    'click #delete': function() {
-      Grocery.remove(Session.get("itemSelected"));
-      console.log(Session.get("itemSelected") + "removed");
+    'click #delete': function(e) {
+      var deleteShow = e.currentTarget;
+      var parent = $(deleteShow).parent().attr('id');
+      $('#' + parent).toggle("puff", function() {
+        Grocery.remove(Session.get("itemSelected"));
+      });
+
+      console.log(Grocery.find().fetch());
     }
   }) 
  
